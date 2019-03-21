@@ -15,11 +15,11 @@ import com.intercorp.cliente.prueba.entity.Cliente;
 import com.intercorp.cliente.prueba.entity.ReporteCliente;
 
 @Service
-public class EmpleadoServiceImpl implements EmpleadoService {
+public class ClienteServiceImpl implements ClienteService {
 	
 	@Autowired
 	
-	private ClienteRepository empleadoRepository;
+	private ClienteRepository ClienteRepository;
 	
 	@Autowired
 	private ReporteRepository reporteCliente;
@@ -28,29 +28,29 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 	public List<Cliente> findAll() {
 		// TODO Auto-generated method stub
 		
-		return empleadoRepository.findAll();
+		return ClienteRepository.findAll();
 	}
 
 	@Override
 	public Cliente findById(Long id) {
 		// TODO Auto-generated method stub
-		return empleadoRepository.findById(id).orElse(null);
+		return ClienteRepository.findById(id).orElse(null);
 	}
 
 	@Override
-	public Cliente save(Cliente empleados) {
+	public Cliente save(Cliente cliente) {
 		// TODO Auto-generated method stub
 		
 		Random aleatorio = new Random();
 
 	    Calendar unaFecha = Calendar.getInstance();
-	    unaFecha.setTime(empleados.getFechanac());
+	    unaFecha.setTime(cliente.getFechanac());
 	    unaFecha.add(Calendar.DAY_OF_YEAR, aleatorio.nextInt(30));
 	    unaFecha.add(Calendar.MONTH, aleatorio.nextInt(12));
 	    unaFecha.add(Calendar.YEAR, aleatorio.nextInt(50));
 
-		empleados.setFechamuerte(unaFecha.getTime());
-		return empleadoRepository.save(empleados);
+		cliente.setFechamuerte(unaFecha.getTime());
+		return ClienteRepository.save(cliente);
 	}
 
 	@Override

@@ -16,22 +16,25 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.intercorp.cliente.prueba.entity.Cliente;
 import com.intercorp.cliente.prueba.entity.ReporteCliente;
-import com.intercorp.cliente.prueba.service.EmpleadoService;
+import com.intercorp.cliente.prueba.service.ClienteService;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 @CrossOrigin(origins= {"*"})
 @RequestMapping("/api")
-//@Api(value = "/users", description = "API de clientes")
-public class EmpleadoController {
+@Api(tags = {"API de clientes"} )
+public class ClienteController {
 	
 	@Autowired
-	private EmpleadoService empleadoServ;
+	private ClienteService empleadoServ;
 	
 	@GetMapping("/listclientes")
-	/*@ApiOperation(
+	@ApiOperation(
             value = "Lista todos los clientes",
             notes = "Devuelve todos los registros de los clientes"
-    )*/
+    )
 	public List<Cliente> findAll(){
 		return empleadoServ.findAll();
 	}

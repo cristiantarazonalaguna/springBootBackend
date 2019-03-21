@@ -5,7 +5,7 @@ import java.util.List;
 import com.intercorp.cliente.prueba.entity.Cliente;
 import com.intercorp.cliente.prueba.entity.ReporteCliente;
 
-public interface EmpleadoService {
+public interface ClienteService {
 	
 	public List<Cliente> findAll();
 	

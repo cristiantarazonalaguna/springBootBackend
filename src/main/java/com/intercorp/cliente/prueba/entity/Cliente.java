@@ -12,29 +12,35 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
 @Table(name = "clientes")
+@ApiModel("Model Cliente")
 public class Cliente implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id	
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	//@ApiModelProperty(value = "Id del cliente" , position = 1)
+	@GeneratedValue(strategy = GenerationType.AUTO,generator="native")
+	@ApiModelProperty(value = "Id del cliente" , position = 1)
 	private Long id;
 	@Column(name = "nombre")
-	//@ApiModelProperty(value = "nombre del cliente" , position = 2)
+	@ApiModelProperty(value = "nombre del cliente" , position = 2)
 	private String nombre;
 	@Column(name = "apellido")
-	//@ApiModelProperty(value = "apellido del cliente" , position = 2)
+	@ApiModelProperty(value = "apellido del cliente" , position = 3)
 	private String apellido;
 	@Column(name = "edad")
-	//@ApiModelProperty(value = "edad del cliente" , position = 2)
+	@ApiModelProperty(value = "edad del cliente" , position = 4)
 	private Integer edad;
+	@ApiModelProperty(value = "fecha de nacimiento del cliente" , position = 5)
 	@Column(name = "fechanac")
 	@Temporal(TemporalType.DATE)
 	private Date fechanac;
 	@Column(name = "fechamuerte")
+	@ApiModelProperty(value = "fecha de muerte del cliente" , position = 4)
 	@Temporal(TemporalType.DATE)
 	private Date fechamuerte;
 

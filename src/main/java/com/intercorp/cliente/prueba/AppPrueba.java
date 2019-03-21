@@ -6,8 +6,13 @@ import org.springframework.context.annotation.Import;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import com.intercorp.cliente.config.SwaggerConfig;
+
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
 @SpringBootApplication
-//@Import(SwaggerConfig.class)
+@EnableSwagger2
+@Import(SwaggerConfig.class)
 public class AppPrueba implements WebMvcConfigurer {
 
 	public static void main(String[] args) {
