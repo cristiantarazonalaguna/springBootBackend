@@ -28,7 +28,7 @@ import io.swagger.annotations.ApiOperation;
 public class ClienteController {
 	
 	@Autowired
-	private ClienteService empleadoServ;
+	private ClienteService clienteServ;
 	
 	@GetMapping("/listclientes")
 	@ApiOperation(
@@ -36,36 +36,50 @@ public class ClienteController {
             notes = "Devuelve todos los registros de los clientes"
     )
 	public List<Cliente> findAll(){
-		return empleadoServ.findAll();
+		return clienteServ.findAll();
 	}
-	
+	@ApiOperation(
+            value = "Muestra los kpis del cliente",
+            notes = "Devuelve el promedio y la desviacion estandar"
+    )
 	@GetMapping("/kpideclientes")
 	public List<ReporteCliente> listado(){
-		return empleadoServ.findKPI();
+		return clienteServ.findKPI();
 	}
 	
-	
-	@GetMapping("/empleados/{id}")
+	@ApiOperation(
+            value = "Busca un cliente por id",
+            notes = "Devuelve el cliente"
+    )
+	@GetMapping("/cliente/{id}")
 	public Cliente finById(@PathVariable Long id) {
-		return empleadoServ.findById(id);
+		return clienteServ.findById(id);
 	}
 	
+	@ApiOperation(
+            value = "Crea un nuevo cliente",
+            notes = "Devuelve el cliente creado"
+    )
 	@PostMapping("/creacliente")
-	@ResponseStatus(HttpStatus.CREATED)
 	public Cliente save(@RequestBody Cliente empleados) {
-		return empleadoServ.save(empleados);
+		return clienteServ.save(empleados);
 	}
 	
-	@PutMapping("/empleados/{id}")
+	@ApiOperation(
+            value = "Actualiza un cliente",
+            notes = "Devuelve el cliente actualizado"
+    )
+	@PutMapping("/cliente/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Cliente update(@RequestBody Cliente empleado,@PathVariable Long id) {
+	public Cliente update(@RequestBody Cliente cliente,@PathVariable Long id) {
 		
-		Cliente empleados = empleadoServ.findById(id);
-		empleados.setNombre(empleado.getNombre());
-		empleados.setApellido(empleado.getApellido());
-		empleados.setEdad(empleado.getEdad());
-		empleados.setFechanac(empleado.getFechanac());;
-		return empleadoServ.save(empleados);
+		Cliente clientes = clienteServ.findById(id);
+		clientes.setNombre(cliente.getNombre());
+		clientes.setApellido(cliente.getApellido());
+		clientes.setEdad(cliente.getEdad());
+		clientes.setFechanac(cliente.getFechanac());
+		clientes.setFechamuerte(cliente.getFechamuerte());
+		return clienteServ.save(clientes);
 		
 	}
 
